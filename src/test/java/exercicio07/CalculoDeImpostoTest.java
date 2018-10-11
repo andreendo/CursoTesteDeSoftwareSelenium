@@ -53,19 +53,19 @@ public class CalculoDeImpostoTest {
     public void testLimparCampos() {
         driver.get("https://andreendo.github.io/");
         
-        WebElement eNome = driver.findElement(By.name("nome"));
+        WebElement eNome = driver.findElement(By.name(""));
         eNome.sendKeys("Jose Silva");
         
-        WebElement eIdade = driver.findElement(By.name("idade"));
+        WebElement eIdade = driver.findElement(By.name(""));
         eIdade.sendKeys("34");
 
-        Select eSexo = new Select( driver.findElement(By.name("sexo")) );
+        Select eSexo = new Select( driver.findElement(By.name("")) );
         eSexo.selectByVisibleText("masculino");
         
-        WebElement eSalario = driver.findElement(By.name("salario"));
+        WebElement eSalario = driver.findElement(By.name(""));
         eSalario.sendKeys("2000");
         
-        driver.findElement(By.xpath("/html/body/form/input[4]")).click();
+        driver.findElement(By.xpath("")).click();
         
         assertEquals("", eNome.getText());
         assertEquals("", eIdade.getText());
@@ -80,26 +80,26 @@ public class CalculoDeImpostoTest {
      */
     @Test
     public void testImpostoMenor() {
-        driver.get("https://andreendo.github.io/");
+        driver.get("");
         
-        WebElement eNome = driver.findElement(By.name("nome"));
+        WebElement eNome = driver.findElement(By.name(""));
         eNome.sendKeys("Maria Silva");
         
-        WebElement eIdade = driver.findElement(By.name("idade"));
+        WebElement eIdade = driver.findElement(By.name(""));
         eIdade.sendKeys("44");
 
-        Select eSexo = new Select( driver.findElement(By.name("sexo")) );
+        Select eSexo = new Select( driver.findElement(By.name("")) );
         eSexo.selectByVisibleText("feminino");
         
-        WebElement eSalario = driver.findElement(By.name("salario"));
+        WebElement eSalario = driver.findElement(By.name(""));
         eSalario.sendKeys("2000");
         
-        driver.findElement(By.xpath("/html/body/form/input[5]")).click();
+        driver.findElement(By.xpath("")).click();
         
-        assertEquals("Nome: Maria Silva", driver.findElement(By.id("divNome")).getText());
-        assertEquals("Idade: 44", driver.findElement(By.id("divIdade")).getText());
-        assertEquals("Sexo: F", driver.findElement(By.id("divSexo")).getText());
-        assertEquals("Valor a pagar de imposto: 300", driver.findElement(By.id("divValorImposto")).getText());
+        assertEquals("Nome: Maria Silva", driver.findElement(By.id("")).getText());
+        assertEquals("Idade: 44", driver.findElement(By.id("")).getText());
+        assertEquals("Sexo: F", driver.findElement(By.id("")).getText());
+        assertEquals("Valor a pagar de imposto: 300", driver.findElement(By.id("")).getText());
     }    
     
     /**
