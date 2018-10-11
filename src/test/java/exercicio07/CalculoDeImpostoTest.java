@@ -9,6 +9,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -110,5 +111,13 @@ public class CalculoDeImpostoTest {
     @Test
     public void testImpostoMaior() {    
         //IMPLEMENTE ESTE
+    }
+    
+    private void comoApelarComJavaScript() {
+        //ESTE CODIGO NAO EH FUNCIONAL, APENAS ILUSTRATIVO
+        
+        WebElement e = driver.findElement(By.id("algum_elemento"));
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        jsExecutor.executeScript("arguments[0].scrollIntoView();", e);
     }
 }
