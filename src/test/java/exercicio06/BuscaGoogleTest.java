@@ -2,12 +2,15 @@ package exercicio06;
 
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
-import org.junit.After;
-import org.junit.Test;
-import static org.junit.Assert.*;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,12 +27,12 @@ public class BuscaGoogleTest {
 
     WebDriver driver;
 
-    @BeforeClass
+    @BeforeAll
     public static void beforeClass() {
         WebDriverManager.chromedriver().setup();
     }
 
-    @Before
+    @BeforeEach
     public void before() {
         ChromeOptions chromeOptions = new ChromeOptions();
         //chromeOptions.addArguments("headless");
@@ -40,9 +43,9 @@ public class BuscaGoogleTest {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
-    @After
+    @AfterEach
     public void after() {
-        //driver.close();
+       	driver.close();
     }
 
     @Test
@@ -53,7 +56,7 @@ public class BuscaGoogleTest {
 
         searchInput.submit();
 
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until((ExpectedCondition<Boolean>) (WebDriver d) -> d.getTitle().toLowerCase().startsWith("teste"));
 
         assertTrue(driver.getTitle().startsWith("teste de software"));

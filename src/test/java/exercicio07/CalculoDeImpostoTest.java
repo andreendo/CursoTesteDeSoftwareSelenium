@@ -3,11 +3,13 @@ package exercicio07;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import java.util.concurrent.TimeUnit;
-import org.junit.After;
-import org.junit.Test;
-import static org.junit.Assert.*;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -24,12 +26,12 @@ public class CalculoDeImpostoTest {
 
     WebDriver driver;
 
-    @BeforeClass
+    @BeforeAll
     public static void beforeClass() {
         WebDriverManager.chromedriver().setup();
     }
 
-    @Before
+    @BeforeEach
     public void before() {
         ChromeOptions chromeOptions = new ChromeOptions();
         //chromeOptions.addArguments("headless");
@@ -40,7 +42,7 @@ public class CalculoDeImpostoTest {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
-    @After
+    @AfterEach
     public void after() {
         driver.close();
     }
@@ -52,21 +54,21 @@ public class CalculoDeImpostoTest {
      */
     @Test
     public void testLimparCampos() {
-        driver.get("https://andreendo.github.io/");
+        driver.get("https://andreendo.github.io/sample-ui-compras/index-2.html");
         
-        WebElement eNome = driver.findElement(By.name(""));
+        WebElement eNome = driver.findElement(By.name("nome"));
         eNome.sendKeys("Jose Silva");
         
-        WebElement eIdade = driver.findElement(By.name(""));
+        WebElement eIdade = driver.findElement(By.name("idade"));
         eIdade.sendKeys("34");
 
-        Select eSexo = new Select( driver.findElement(By.name("")) );
+        Select eSexo = new Select( driver.findElement(By.name("sexo")) );
         eSexo.selectByVisibleText("masculino");
         
-        WebElement eSalario = driver.findElement(By.name(""));
+        WebElement eSalario = driver.findElement(By.name("salario"));
         eSalario.sendKeys("2000");
         
-        driver.findElement(By.xpath("")).click();
+        driver.findElement(By.xpath("/html/body/form/input[4]")).click();
         
         assertEquals("", eNome.getText());
         assertEquals("", eIdade.getText());
@@ -79,6 +81,7 @@ public class CalculoDeImpostoTest {
      * e pressione o botão “Calcular”. 
      * Verifique se o cálculo do imposto foi correto. Neste caso, 15% de imposto
      */
+    @Disabled
     @Test
     public void testImpostoMenor() {
         driver.get("");
@@ -108,6 +111,7 @@ public class CalculoDeImpostoTest {
      * e pressione o botão “Calcular”. 
      * Verifique se o cálculo do imposto foi correto. Neste caso, 25% de imposto
      */
+    @Disabled
     @Test
     public void testImpostoMaior() {    
         //IMPLEMENTE ESTE
